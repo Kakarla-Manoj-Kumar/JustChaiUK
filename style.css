@@ -65,7 +65,9 @@ body {
   transition: color 0.2s ease;
 }
 
-.nav-links a::after {
+
+
+.nav-links a:not(.btn-contact)::after {
   content: '';
   position: absolute;
   left: 0;
@@ -76,13 +78,10 @@ body {
   transition: width 0.3s ease;
 }
 
-.nav-links a:hover {
-  color: #AF905C;
-}
-
-.nav-links a:hover::after {
+.nav-links a:not(.btn-contact):hover::after {
   width: 100%;
 }
+
 
 /* === CONTACT BUTTON === */
 .btn-contact {
@@ -1118,17 +1117,55 @@ body {
 .footer-links a:hover {
   text-decoration: underline;
 }
+.mobile-logo {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-logo {
+    display: block;
+    order: 1;
+  }
+
+  .footer-left .logo-s {
+    display: none;
+  }
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {
   .footer-main {
+    display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 32px;
   }
 
+  /* Move the logo to the top */
+  .footer-logo.logo-s {
+    order: 1;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Move right section second */
   .footer-right {
+    margin-top: 0px;
+    order: 2;
     flex-direction: column;
     gap: 24px;
+  }
+
+  /* Move left section (excluding logo) third */
+  .footer-left {
+    order: 3;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Hide the logo inside .footer-left since it was reordered */
+  .footer-left .logo-s {
+    display: none;
   }
 
   .footer-bottom {
@@ -1142,4 +1179,6 @@ body {
     margin-right: 12px;
   }
 }
+
+
 
